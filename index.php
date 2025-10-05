@@ -62,7 +62,6 @@ $hobbies = ["Kuliner", "Bersepeda", "Berlari", "Menonton Film", "Mendengarkan Mu
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-
     <header class="header">
         <a href="index.php" class="logo"><?= explode(' ', $profile["name"])[0]; ?><span> <?= explode(' ', $profile["name"])[1]; ?></span></a>
         <i class='bx bx-menu' id="menu-icon"></i>
@@ -180,10 +179,23 @@ $hobbies = ["Kuliner", "Bersepeda", "Berlari", "Menonton Film", "Mendengarkan Mu
 
     <script>
         // Navbar active link saat scroll
-        let sections = document.querySelectorAll('section');
-        let navLinks = document.querySelectorAll('.navbar a');
+        let menuIcon = document.querySelector('#menu-icon');
+        let navbar = document.querySelector('.navbar');
+        
+        // Toggle menu icon dan navbar saat klik
+        menuIcon.onclick = () => {
+            menuIcon.classList.toggle('bx-x');
+            navbar.classList.toggle('active');
+        };
+        
+        // Hapus menu icon dan navbar saat klik link (untuk mobile)
+        navbar.classlist.remove('active');
+        menuIcon.classlist.remove('bx-x');
 
         window.onscroll = () => {
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.navbar a');
+
             sections.forEach(sec => {
                 let top = window.scrollY;
                 let offset = sec.offsetTop - 150;
